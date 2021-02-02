@@ -4,7 +4,15 @@ export const constantRouterMap = [
     path: '/index',
     name: 'index',
     meta: {},
-    component: () => import('@/views/Index.vue')
+    component: () => import('@/views/Index.vue'),
+    children: [
+      {
+        path: '/TextBufferGeometry',
+        name: 'TextBufferGeometry',
+        meta: {},
+        component: () => import('@/views/TextBufferGeometry/index.vue')
+      }
+    ]
   },
   {
     path: '*',
