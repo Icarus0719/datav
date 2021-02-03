@@ -12,7 +12,7 @@
       <Tree
         ref="tree"
         :model="asideData"
-        :current-node-key="asideData[0].path"
+        :current-node-key="$route.path"
         node-key="path"
         :props="{ children: 'children', label: 'title' }"
         @node-click="nodeClick"
