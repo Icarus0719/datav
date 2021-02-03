@@ -9,7 +9,7 @@ export const TextBufferGeometry_camera = (webDom) => {
     0.1,
     1000
   )
-  camera.position.y = 30
-  camera.position.z = 30
+  camera.position.y = 10
+  camera.position.z = 60
   return camera
 }
