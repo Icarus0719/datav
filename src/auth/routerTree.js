@@ -1,22 +1,23 @@
 // 侧边栏，面包屑等路由内容的树形数据结构
 
-function AdminPath () {
-  this.data = [
-    {
+function AdminPath() {
+  this.data = [{
       title: 'TextBufferGeometry',
       path: '/TextBufferGeometry',
       children: []
     },
     {
-      title: '用户管理',
-      path: '/user',
+      title: 'Diamond',
+      path: '/Diamond',
       children: []
     },
     {
-      title: '角色管理',
-      path: '/role',
+      title: 'Border',
+      path: '/Border',
       children: []
     }
   ]
 }
-export const superAdminPathList = new AdminPath().data
+export const superAdminPathList = new AdminPath().data.sort((a, b) => {
+  return a.title.localeCompare(b.title, 'zh-CN')
+})

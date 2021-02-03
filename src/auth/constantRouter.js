@@ -1,18 +1,26 @@
 // 默认不需要权限的页面
-export const constantRouterMap = [
-  {
+export const constantRouterMap = [{
     path: '/index',
     name: 'index',
     meta: {},
+    redirect: '/TextBufferGeometry',
     component: () => import('@/views/Index.vue'),
-    children: [
-      {
-        path: '/TextBufferGeometry',
-        name: 'TextBufferGeometry',
-        meta: {},
-        component: () => import('@/views/TextBufferGeometry/index.vue')
-      }
-    ]
+    children: [{
+      path: '/TextBufferGeometry',
+      name: 'TextBufferGeometry',
+      meta: {},
+      component: () => import('@/views/TextBufferGeometry')
+    }, {
+      path: '/Border',
+      name: 'Border',
+      meta: {},
+      component: () => import('@/views/Border')
+    }, {
+      path: '/Diamond',
+      name: 'Diamond',
+      meta: {},
+      component: () => import('@/views/Diamond')
+    }]
   },
   {
     path: '*',

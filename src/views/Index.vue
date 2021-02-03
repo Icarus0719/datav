@@ -15,6 +15,7 @@
         :current-node-key="asideData[0].path"
         node-key="path"
         :props="{ children: 'children', label: 'title' }"
+        @node-click="nodeClick"
       ></Tree>
     </div>
 
@@ -50,6 +51,11 @@ export default {
       }
       return e
     })
+  },
+  methods: {
+    nodeClick (node) {
+      this.$router.push(node.path)
+    }
   },
 }
 </script>
