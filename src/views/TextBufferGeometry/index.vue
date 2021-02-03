@@ -9,11 +9,12 @@ import { TextBufferGeometry_lights } from '@/plugin/threeView/lights.js'
 import { TextBufferGeometry_renders } from '@/plugin/threeView/renders.js'
 import { TextBufferGeometry_orbitControls } from '@/plugin/threeView/orbitControls.js'
 import { TextBufferGeometry_helpers } from '@/plugin/threeView/helpers.js'
+import { TextBufferGeometry_FBXLoaders } from '@/plugin/threeView/FBXLoaders.js'
 
 export default {
   mounted () {
     this.init()
-    this.addModel()
+    this.loadModel()
   },
   methods: {
     init () {
@@ -32,7 +33,8 @@ export default {
         this.scene.add(i)
       })
       const orbitControls = TextBufferGeometry_orbitControls(camera, webglRender)
-      threeView.animate({ scene, camera, webglRender, orbitControls })
+      const stats = threeView.addStats()
+      threeView.animate({ scene, camera, webglRender, orbitControls, stats })
       threeView.addEventResize({ camera, webglRender })
     },
     addModel () {
@@ -45,13 +47,35 @@ export default {
       );
       this.scene.add(objBack);
     },
+    loadModel () {
+      let lianColor = '#E4CA40'
+      const urls = [
+        '/static/models/lianzi_left.fbx',
+        '/static/models/lianzi_right.fbx'
+      ]
+      Promise.all(
+        urls.map(e => {
+          return TextBufferGeometry_FBXLoaders(e)
+        })
+      ).then(res => {
+        let leftObject = res[0]
+        let rightObject = res[1]
+        changeObjectMaterial(leftObject)
+        changeObjectMaterial(rightObject)
+
+        this.scene.add(leftObject)
+        this.scene.add(rightObject)
+
+        // generateGeometry()
+      })
+      // 修改项链材质
+      function changeObjectMaterial (object) {
+        const mesh = object.children[0]
+        mesh.material.color = new Color(lianColor)
+        mesh.material.emissive = new Color(lianColor)
+        mesh.material.emissiveIntensity = 1
+      }
+    }
   },
 }
 </script>
-
-<style lang='less'>
-.webgl {
-  width: 100%;
-  height: 100%;
-}
-</style>

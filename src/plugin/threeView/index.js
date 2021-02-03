@@ -1,3 +1,5 @@
+import * as Stats from "stats.js";
+
 class InitThreeJS {
   constructor(el) {
     this.webDom = el
@@ -8,7 +10,8 @@ class InitThreeJS {
       camera,
       webglRender,
       orbitControls,
-      transformControls
+      transformControls,
+      stats
     } = options
     if (!scene || !camera || !webglRender) return
     render()
@@ -21,6 +24,7 @@ class InitThreeJS {
       webglRender.render(scene, camera);
       transformControls && transformControls.updateMatrixWorld();
       orbitControls && orbitControls.update();
+      stats && stats.update();
     }
   }
   addEventResize = (options) => {
@@ -52,6 +56,13 @@ class InitThreeJS {
       CSS2DLabelRenderer && CSS2DLabelRenderer.setSize(clientWidth, clientHeight);
       CSS3DLabelRenderer && CSS3DLabelRenderer.setSize(clientWidth, clientHeight);
     }
+  }
+  addStats() {
+    const stats = new Stats();
+    stats.showPanel(0);
+    stats.dom.style.position = "absolute"
+    this.webDom.appendChild(stats.dom);
+    return stats
   }
 }
 export default InitThreeJS
