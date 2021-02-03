@@ -2,18 +2,22 @@
   <div class="webgl" ref="sceneview"></div>
 </template>
 <script>
-import { Scene, Color, BoxGeometry, Mesh, MeshBasicMaterial } from "three"
+import { Scene, Color, Mesh } from "three"
 import InitThreeJS from '@/plugin/threeView'
-import { TextBufferGeometry_camera } from '@/plugin/threeView/cameras.js'
+import { TextBufferGeometry_camera } from '@/plugin/threeView/cameras/PerspectiveCameras.js'
 import { TextBufferGeometry_lights } from '@/plugin/threeView/lights.js'
 import { TextBufferGeometry_renders } from '@/plugin/threeView/renders.js'
-import { TextBufferGeometry_orbitControls } from '@/plugin/threeView/orbitControls.js'
+import { TextBufferGeometry_orbitControls } from '@/plugin/threeView/controls/orbitControls.js'
 import { TextBufferGeometry_helpers } from '@/plugin/threeView/helpers.js'
-import { TextBufferGeometry_FBXLoaders } from '@/plugin/threeView/FBXLoaders.js'
+import { TextBufferGeometry_FBXLoaders } from '@/plugin/threeView/loaders/FBXLoaders.js'
+import { TextBufferGeometry_neck } from '@/plugin/threeView/geometries/TextBufferGeometry.js'
+import { TextBufferGeometry_material } from '@/plugin/threeView/materials/MeshPhongMaterial.js'
+import { TextBufferGeometry_guis } from '@/plugin/threeView/guis.js'
 
 export default {
   mounted () {
     this.init()
+    this.addText()
     this.loadModel()
   },
   methods: {
@@ -37,15 +41,36 @@ export default {
       threeView.animate({ scene, camera, webglRender, orbitControls, stats })
       threeView.addEventResize({ camera, webglRender })
     },
-    addModel () {
-      var objBack = new Mesh(
-        new BoxGeometry(10, 10, 10),
-        new MeshBasicMaterial({
-          color: "red",
-          wireframe: false
+    addText () {
+      let property = {
+        text: 'abcD',
+        size: 5,
+        height: 2,
+        curveSegments: 12,
+        font: 'molle',
+        weight: 'regular',
+        bevelEnabled: false,
+        bevelThickness: 1,
+        bevelSize: 0.5,
+        bevelOffset: 0.0,
+        bevelSegments: 3
+      }
+      const material = TextBufferGeometry_material
+      let textMesh = null
+      TextBufferGeometry_neck(property).then(geometry => {
+        textMesh = new Mesh(geometry, material)
+        this.scene.add(textMesh)
+      })
+      TextBufferGeometry_guis(property, (value, prop) => {
+        property[prop] = value
+        updateGroupGeometry()
+      })
+      function updateGroupGeometry () {
+        TextBufferGeometry_neck(property).then(geometry => {
+          textMesh.geometry.dispose()
+          textMesh.geometry = geometry
         })
-      );
-      this.scene.add(objBack);
+      }
     },
     loadModel () {
       let lianColor = '#E4CA40'
@@ -62,11 +87,8 @@ export default {
         let rightObject = res[1]
         changeObjectMaterial(leftObject)
         changeObjectMaterial(rightObject)
-
         this.scene.add(leftObject)
         this.scene.add(rightObject)
-
-        // generateGeometry()
       })
       // 修改项链材质
       function changeObjectMaterial (object) {
