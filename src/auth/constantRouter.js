@@ -32,6 +32,12 @@ export const constantRouterMap = [{
         name: 'SineNuts',
         meta: {},
         component: () => import('@/views/SineNuts')
+      },
+      {
+        path: '/AE',
+        name: 'AE',
+        meta: {},
+        component: () => import('@/views/AE')
       }
     ]
   },

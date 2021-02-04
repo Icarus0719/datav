@@ -25,6 +25,11 @@ function AdminPath() {
       title: 'SineNuts三角函数动画',
       path: '/SineNuts',
       children: []
+    },
+    {
+      title: 'AE动画',
+      path: '/AE',
+      children: []
     }
   ]
 }

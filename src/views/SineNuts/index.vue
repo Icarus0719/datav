@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-content">
     <ul class="sinenuts-box sg-layer-box">
       <li
         class="sinenuts-item sg-layer-row-10"
