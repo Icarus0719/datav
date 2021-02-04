@@ -6,21 +6,28 @@ export const constantRouterMap = [{
     redirect: '/TextBufferGeometry',
     component: () => import('@/views/Index.vue'),
     children: [{
-      path: '/TextBufferGeometry',
-      name: 'TextBufferGeometry',
-      meta: {},
-      component: () => import('@/views/TextBufferGeometry')
-    }, {
-      path: '/Border',
-      name: 'Border',
-      meta: {},
-      component: () => import('@/views/Border')
-    }, {
-      path: '/Diamond',
-      name: 'Diamond',
-      meta: {},
-      component: () => import('@/views/Diamond')
-    }]
+        path: '/TextBufferGeometry',
+        name: 'TextBufferGeometry',
+        meta: {},
+        component: () => import('@/views/TextBufferGeometry')
+      }, {
+        path: '/Border',
+        name: 'Border',
+        meta: {},
+        component: () => import('@/views/Border')
+      }, {
+        path: '/Diamond',
+        name: 'Diamond',
+        meta: {},
+        component: () => import('@/views/Diamond')
+      },
+      {
+        path: '/Snap',
+        name: 'Snap',
+        meta: {},
+        component: () => import('@/views/Snap')
+      }
+    ]
   },
   {
     path: '*',

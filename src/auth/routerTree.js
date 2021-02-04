@@ -15,6 +15,11 @@ function AdminPath() {
       title: 'Border动画',
       path: '/Border',
       children: []
+    },
+    {
+      title: 'Snap响指效果',
+      path: '/Snap',
+      children: []
     }
   ]
 }

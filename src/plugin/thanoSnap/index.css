@@ -1,0 +1,58 @@
+.dust {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  filter: blur(0.05em);
+}
+
+.quickFade {
+  animation: fadeout 1s linear forwards;
+}
+
+.recoverFade {
+  animation: fadein 1s linear forwards;
+}
+
+.fade {
+  animation: fadeout 2s linear forwards;
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.blur {
+  animation: fadeblur 2s ease-in forwards;
+}
+
+@keyframes fadeblur {
+  0% {
+    opacity: 1;
+    filter: blur(0.05em);
+  }
+
+  80% {
+    filter: blur(0.188em);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
