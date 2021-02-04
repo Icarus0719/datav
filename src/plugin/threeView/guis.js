@@ -31,3 +31,9 @@ export const TextBufferGeometry_guis = (data, callback) => {
     .step(1)
     .onChange((value) => callback(value, 'bevelSegments'))
 }
+
+export const Diamond_guis = (data, callback) => {
+  const folder = gui.addFolder('Diamond')
+  folder.add(data, 'reflectivity', 0, 1).onChange((value) => callback(value, 'reflectivity'))
+  folder.add(data, 'gemColor', ['Blue', 'Green', 'Red', 'White', 'Black']).onChange((value) => callback(value, 'gemColor'))
+}

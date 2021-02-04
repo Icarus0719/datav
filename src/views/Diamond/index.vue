@@ -11,7 +11,7 @@ import { Default_orbitControls } from '@/plugin/threeView/controls/orbitControls
 import { Default_GLTFLoader } from '@/plugin/threeView/loaders/GLTFLoader.js'
 import { Diamond_RGBELoader } from '@/plugin/threeView/loaders/RGBELoader.js'
 import { Diamond_material } from '@/plugin/threeView/materials/MeshPhysicalMaterial.js'
-
+import { Diamond_guis, gui } from '@/plugin/threeView/guis.js'
 export default {
   mounted () {
     this.init()
@@ -62,8 +62,39 @@ export default {
           this.scene.add(parent)
         }
       })
-
+      this.addGUiControl()
     },
+    addGUiControl () {
+      const { gemBackMaterial, gemFrontMaterial } = Diamond_material
+      let property = {
+        reflectivity: 0.5,
+        gemColor: 'Black',
+      }
+      Diamond_guis(property, (value, prop) => {
+        property[prop] = value
+        updateDiamond()
+      })
+      function updateDiamond () {
+        gemFrontMaterial.reflectivity = gemBackMaterial.reflectivity = property.reflectivity;
+        let newColor = gemBackMaterial.color;
+        switch (property.gemColor) {
+          case 'Blue': newColor = new Color(0x000088);
+            break;
+          case 'Red': newColor = new Color(0x880000);
+            break;
+          case 'Green': newColor = new Color(0x008800);
+            break;
+          case 'White': newColor = new Color(0x888888);
+            break;
+          case 'Black': newColor = new Color(0x0f0f0f);
+            break;
+        }
+        gemBackMaterial.color = gemFrontMaterial.color = newColor;
+      }
+      this.$once('hook:beforeDestroy', () => {
+        gui.destroy()
+      })
+    }
   },
 }
 </script>

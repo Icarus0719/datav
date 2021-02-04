@@ -7,7 +7,7 @@ function AdminPath() {
       children: []
     },
     {
-      title: 'Diamond',
+      title: 'MeshPhysicalMaterial-Diamond',
       path: '/Diamond',
       children: []
     },

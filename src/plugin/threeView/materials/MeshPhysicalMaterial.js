@@ -7,7 +7,7 @@ import {
 export const Diamond_material = (() => {
   const gemBackMaterial = new MeshPhysicalMaterial({
     map: null,
-    color: 0x0000ff,
+    color: 0x0f0f0f,
     metalness: 1,
     roughness: 0,
     opacity: 0.5,
@@ -18,7 +18,7 @@ export const Diamond_material = (() => {
   })
   const gemFrontMaterial = new MeshPhysicalMaterial({
     map: null,
-    color: 0x0000ff,
+    color: 0x0f0f0f,
     metalness: 0,
     roughness: 0,
     opacity: 0.25,
