@@ -12,7 +12,7 @@ function AdminPath() {
       children: []
     },
     {
-      title: 'Border',
+      title: 'Border动画',
       path: '/Border',
       children: []
     }
