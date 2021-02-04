@@ -69,7 +69,6 @@ const snap = (target) => {
 
       target.parentNode.appendChild(c);
     }
-    console.log(target, canvas)
     target.classList.add("quickFade");
 
   });

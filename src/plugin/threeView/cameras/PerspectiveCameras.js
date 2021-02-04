@@ -2,7 +2,7 @@ import {
   PerspectiveCamera,
 } from "three"
 
-export const TextBufferGeometry_camera = (webDom) => {
+export const Default_camera = (webDom) => {
   const camera = new PerspectiveCamera(
     75,
     webDom.clientWidth / webDom.clientHeight,

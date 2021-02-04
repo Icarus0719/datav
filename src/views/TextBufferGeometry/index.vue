@@ -4,11 +4,11 @@
 <script>
 import { Scene, Color, Mesh, BufferGeometry } from "three"
 import InitThreeJS from '@/plugin/threeView'
-import { TextBufferGeometry_camera } from '@/plugin/threeView/cameras/PerspectiveCameras.js'
+import { Default_camera } from '@/plugin/threeView/cameras/PerspectiveCameras.js'
 import { TextBufferGeometry_lights } from '@/plugin/threeView/lights.js'
-import { TextBufferGeometry_renders } from '@/plugin/threeView/renders.js'
-import { TextBufferGeometry_orbitControls } from '@/plugin/threeView/controls/orbitControls.js'
-import { TextBufferGeometry_helpers } from '@/plugin/threeView/helpers.js'
+import { Default_renders } from '@/plugin/threeView/renders.js'
+import { Default_orbitControls } from '@/plugin/threeView/controls/orbitControls.js'
+import { Default_helpers } from '@/plugin/threeView/helpers.js'
 import { TextBufferGeometry_FBXLoaders } from '@/plugin/threeView/loaders/FBXLoaders.js'
 import { TextBufferGeometry_neck } from '@/plugin/threeView/geometries/TextBufferGeometry.js'
 import { TextBufferGeometry_material } from '@/plugin/threeView/materials/MeshPhongMaterial.js'
@@ -27,16 +27,16 @@ export default {
       const scene = new Scene()
       this.scene = scene
       this.scene.background = new Color(0x444444)
-      const camera = TextBufferGeometry_camera(webDom)
+      const camera = Default_camera(webDom)
       this.scene.add(camera)
-      const webglRender = TextBufferGeometry_renders(webDom)
+      const webglRender = Default_renders(webDom)
       TextBufferGeometry_lights.forEach(e => {
         this.scene.add(e)
       })
-      TextBufferGeometry_helpers.forEach(i => {
+      Default_helpers.forEach(i => {
         this.scene.add(i)
       })
-      const orbitControls = TextBufferGeometry_orbitControls(camera, webglRender)
+      const orbitControls = Default_orbitControls(camera, webglRender)
       const stats = threeView.addStats()
       threeView.animate({ scene, camera, webglRender, orbitControls, stats })
       threeView.addEventResize({ camera, webglRender })

@@ -2,7 +2,7 @@ import {
   WebGLRenderer
 } from "three"
 
-export const TextBufferGeometry_renders = (webDom) => {
+export const Default_renders = (webDom) => {
   let webGLRenderer = new WebGLRenderer({
     antialias: true,
     alpha: true
