@@ -5,7 +5,16 @@ import {
   Box3
 } from "three"
 
-export const TextBufferGeometry_FBXLoaders = (url) => {
+export const Default_FBXLoader = (url) => {
+  return new Promise(resolve => {
+    const loader = new FBXLoader()
+    loader.load(url, object => {
+      resolve(object)
+    })
+  })
+}
+
+export const TextBufferGeometry_FBXLoader = (url) => {
   return new Promise(resolve => {
     const loader = new FBXLoader()
     loader.load(url, object => {

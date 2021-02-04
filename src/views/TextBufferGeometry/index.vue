@@ -9,7 +9,7 @@ import { TextBufferGeometry_lights } from '@/plugin/threeView/lights.js'
 import { Default_renders } from '@/plugin/threeView/renders.js'
 import { Default_orbitControls } from '@/plugin/threeView/controls/orbitControls.js'
 import { Default_helpers } from '@/plugin/threeView/helpers.js'
-import { TextBufferGeometry_FBXLoaders } from '@/plugin/threeView/loaders/FBXLoaders.js'
+import { TextBufferGeometry_FBXLoader } from '@/plugin/threeView/loaders/FBXLoader.js'
 import { TextBufferGeometry_neck } from '@/plugin/threeView/geometries/TextBufferGeometry.js'
 import { TextBufferGeometry_material } from '@/plugin/threeView/materials/MeshPhongMaterial.js'
 import { TextBufferGeometry_guis, gui } from '@/plugin/threeView/guis.js'
@@ -49,7 +49,7 @@ export default {
       ]
       Promise.all(
         urls.map(e => {
-          return TextBufferGeometry_FBXLoaders(e)
+          return TextBufferGeometry_FBXLoader(e)
         })
       ).then(res => {
         this.leftObject = res[0]

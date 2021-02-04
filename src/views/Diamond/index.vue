@@ -2,14 +2,15 @@
   <div class="webgl" ref="sceneview"></div>
 </template>
 <script>
-import { Scene, Color } from "three"
+import { Scene, Color, Mesh, Group, PMREMGenerator } from "three"
 import InitThreeJS from '@/plugin/threeView'
 import { Default_camera } from '@/plugin/threeView/cameras/PerspectiveCameras.js'
-import { Default_lights } from '@/plugin/threeView/lights.js'
+import { Diamond_lights } from '@/plugin/threeView/lights.js'
 import { Default_renders } from '@/plugin/threeView/renders.js'
 import { Default_orbitControls } from '@/plugin/threeView/controls/orbitControls.js'
-import { Default_helpers } from '@/plugin/threeView/helpers.js'
-import { Default_GLTFLoaders } from '@/plugin/threeView/loaders/GLTFLoaders.js'
+import { Default_GLTFLoader } from '@/plugin/threeView/loaders/GLTFLoader.js'
+import { Diamond_RGBELoader } from '@/plugin/threeView/loaders/RGBELoader.js'
+import { Diamond_material } from '@/plugin/threeView/materials/MeshPhysicalMaterial.js'
 
 export default {
   mounted () {
@@ -24,24 +25,44 @@ export default {
       this.scene = scene
       this.scene.background = new Color(0x444444)
       const camera = Default_camera(webDom)
+      camera.position.set(0, 0, 4)
       this.scene.add(camera)
       const webglRender = Default_renders(webDom)
-      Default_lights.forEach(e => {
+      Diamond_lights.forEach(e => {
         this.scene.add(e)
-      })
-      Default_helpers.forEach(i => {
-        this.scene.add(i)
       })
       const orbitControls = Default_orbitControls(camera, webglRender)
       const stats = threeView.addStats()
+      this.pmremGenerator = new PMREMGenerator(webglRender);
+      this.pmremGenerator.compileEquirectangularShader();
+
       threeView.animate({ scene, camera, webglRender, orbitControls, stats })
       threeView.addEventResize({ camera, webglRender })
     },
     async loadModel () {
+      const { gemBackMaterial, gemFrontMaterial } = Diamond_material
+      const hdrEquirect = await Diamond_RGBELoader()
+      const hdrCubeRenderTarget = this.pmremGenerator.fromEquirectangular(hdrEquirect);
+      this.pmremGenerator.dispose();
+      gemFrontMaterial.envMap = gemBackMaterial.envMap = hdrCubeRenderTarget.texture;
+      gemFrontMaterial.needsUpdate = gemBackMaterial.needsUpdate = true;
+      hdrEquirect.dispose();
+
       const url =
         '/static/models/diamond.glb';
-      const object = await Default_GLTFLoaders(url)
-      this.scene.add(object)
+      const gltf = await Default_GLTFLoader(url)
+      gltf.traverse(child => {
+        if (child instanceof Mesh) {
+          child.material = gemBackMaterial
+          const second = child.clone();
+          second.material = gemFrontMaterial;
+          const parent = new Group();
+          parent.add(second);
+          parent.add(child);
+          this.scene.add(parent)
+        }
+      })
+
     },
   },
 }

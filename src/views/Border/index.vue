@@ -13,7 +13,11 @@
           <span v-else>{{ item.text }}</span>
         </div>
       </div>
+      <div class="sg-layer-row-5"></div>
+      <div class="sg-layer-row-5"></div>
+      <div class="sg-layer-row-5"></div>
     </div>
+   
   </div>
 </template>
 <script>
@@ -27,7 +31,7 @@ export default {
     const urls = {
       8: "https://css-tricks.com/how-to-animate-a-svg-with-border-image/"
     }
-    this.boxData = new Array(10).fill(0).map((e, i) => {
+    this.boxData = new Array(9).fill(0).map((e, i) => {
       return {
         text: `border-type-${i}`,
         src: urls[i]
