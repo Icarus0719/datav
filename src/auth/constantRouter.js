@@ -26,6 +26,12 @@ export const constantRouterMap = [{
         name: 'Snap',
         meta: {},
         component: () => import('@/views/Snap')
+      },
+      {
+        path: '/SineNuts',
+        name: 'SineNuts',
+        meta: {},
+        component: () => import('@/views/SineNuts')
       }
     ]
   },

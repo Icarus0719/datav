@@ -1,8 +1,8 @@
 <template>
   <div class="page-content">
-    <div class="layer-box">
+    <div class="sg-layer-box">
       <div
-        :class="['layer-row-5', 'box-card', `${item.text}`]"
+        :class="['sg-layer-row-5', 'box-card', `${item.text}`]"
         v-for="(item, index) in boxData"
         :key="index"
       >

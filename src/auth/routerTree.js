@@ -20,6 +20,11 @@ function AdminPath() {
       title: 'Snap响指效果',
       path: '/Snap',
       children: []
+    },
+    {
+      title: 'SineNuts三角函数动画',
+      path: '/SineNuts',
+      children: []
     }
   ]
 }
