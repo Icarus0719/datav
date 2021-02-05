@@ -38,6 +38,12 @@ export const constantRouterMap = [{
         name: 'AE',
         meta: {},
         component: () => import('@/views/AE')
+      },
+      {
+        path: '/ShaderDiamond',
+        name: 'ShaderDiamond',
+        meta: {},
+        component: () => import('@/views/ShaderDiamond')
       }
     ]
   },

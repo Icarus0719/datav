@@ -30,6 +30,11 @@ function AdminPath() {
       title: 'AE动画',
       path: '/AE',
       children: []
+    },
+    {
+      title: 'ShaderDiamond',
+      path: '/ShaderDiamond',
+      children: []
     }
   ]
 }

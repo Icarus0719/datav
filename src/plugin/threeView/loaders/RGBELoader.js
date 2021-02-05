@@ -10,7 +10,7 @@ export const Diamond_RGBELoader = () => {
     new RGBELoader()
       .setDataType(UnsignedByteType)
       .setPath('/static/textures/equirectangular/')
-      .load('royal_esplanade_1k.hdr', hdrEquirect => {
+      .load('venice_sunset_1k.hdr', hdrEquirect => {
         resolve(hdrEquirect)
       })
   })
