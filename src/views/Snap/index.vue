@@ -15,7 +15,7 @@
 </template>
 <script>
 import { watchMediaVoice } from "@/utils/util.device.js";
-import * as ThanosSnap from "@/plugin/thanoSnap";
+import ThanosSnap from "@/plugin/thanoSnap";
 
 export default {
   data () {
@@ -24,6 +24,8 @@ export default {
     }
   },
   mounted () {
+    const image = document.querySelector("#snap-target");
+    this.ThanosSnapClass = new ThanosSnap(image);
     watchMediaVoice(() => {
       // 设备音频监控
       this.openSnapOpt();
@@ -32,9 +34,7 @@ export default {
   methods: {
     openSnapOpt () {
       // 操作响指动画
-      const image = document.querySelector("#snap-target");
-      ThanosSnap.createAnimation(image);
-      // ThanosSnap.recovery();
+      this.ThanosSnapClass.start()
     },
   },
 }
@@ -49,6 +49,7 @@ h3 {
   width: 100%;
   height: calc(100% - 60px);
   position: relative;
+  overflow: hidden;
 }
 #snap-target {
   width: 100%;

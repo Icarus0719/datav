@@ -94,6 +94,10 @@ export const watchMediaVoice = (callback) => {
             callback && callback()
           }
         };
+        setTimeout(() => {
+          tips.style.opacity = 0;
+          tips.style.zIndex = -1;
+        }, 2000)
       })
       .catch(error => {
         tips.innerHTML = `获取音频时好像出了点问题，试试点击按钮触发吧<br>${error}`;
