@@ -11,7 +11,7 @@ import { Default_orbitControls } from '@/plugin/threeView/controls/orbitControls
 import { Default_GLTFLoader } from '@/plugin/threeView/loaders/GLTFLoader.js'
 import { Diamond_RGBELoader } from '@/plugin/threeView/loaders/RGBELoader.js'
 import { Diamond_material } from '@/plugin/threeView/materials/MeshPhysicalMaterial.js'
-import { Diamond_guis, gui } from '@/plugin/threeView/guis.js'
+import { Diamond_guis } from '@/plugin/threeView/guis.js'
 export default {
   mounted () {
     this.init()
@@ -70,7 +70,7 @@ export default {
         reflectivity: 0.5,
         gemColor: 'Black',
       }
-      Diamond_guis(property, (value, prop) => {
+      const { folder, gui } = Diamond_guis(property, (value, prop) => {
         property[prop] = value
         updateDiamond()
       })
@@ -92,6 +92,7 @@ export default {
         gemBackMaterial.color = gemFrontMaterial.color = newColor;
       }
       this.$once('hook:beforeDestroy', () => {
+        gui.removeFolder(folder)
         gui.destroy()
       })
     }

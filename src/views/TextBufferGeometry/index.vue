@@ -12,7 +12,7 @@ import { Default_helpers } from '@/plugin/threeView/helpers.js'
 import { TextBufferGeometry_FBXLoader } from '@/plugin/threeView/loaders/FBXLoader.js'
 import { TextBufferGeometry_neck } from '@/plugin/threeView/geometries/TextBufferGeometry.js'
 import { TextBufferGeometry_material } from '@/plugin/threeView/materials/MeshPhongMaterial.js'
-import { TextBufferGeometry_guis, gui } from '@/plugin/threeView/guis.js'
+import { TextBufferGeometry_guis } from '@/plugin/threeView/guis.js'
 
 export default {
 
@@ -90,7 +90,7 @@ export default {
       this.scene.add(textMesh)
       generateGeometry()
 
-      TextBufferGeometry_guis(property, (value, prop) => {
+      const { folder, gui } = TextBufferGeometry_guis(property, (value, prop) => {
         property[prop] = value
         generateGeometry()
       })
@@ -102,6 +102,7 @@ export default {
         _self.changeObjectPos([_self.leftObject, _self.rightObject], geometry, textMesh)
       }
       this.$once('hook:beforeDestroy', () => {
+        gui.removeFolder(folder)
         gui.destroy()
       })
     },

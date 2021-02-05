@@ -1,7 +1,7 @@
 import * as dat from 'dat.gui'
-export const gui = new dat.GUI()
 
 export const TextBufferGeometry_guis = (data, callback) => {
+  const gui = new dat.GUI()
   const fonts = [
     'helvetiker',
     'optimer',
@@ -30,10 +30,21 @@ export const TextBufferGeometry_guis = (data, callback) => {
     .add(data, 'bevelSegments', 0, 8)
     .step(1)
     .onChange((value) => callback(value, 'bevelSegments'))
+
+  return {
+    gui,
+    folder
+  }
 }
 
 export const Diamond_guis = (data, callback) => {
+  const gui = new dat.GUI()
   const folder = gui.addFolder('Diamond')
   folder.add(data, 'reflectivity', 0, 1).onChange((value) => callback(value, 'reflectivity'))
   folder.add(data, 'gemColor', ['Blue', 'Green', 'Red', 'White', 'Black']).onChange((value) => callback(value, 'gemColor'))
+
+  return {
+    gui,
+    folder
+  }
 }
