@@ -30,6 +30,16 @@ function AdminPath() {
       title: 'ShaderDiamond',
       path: '/ShaderDiamond',
       children: []
+    },
+    {
+      title: 'Other',
+      path: '/Other',
+      children: []
+    },
+    {
+      title: 'Image',
+      path: '/Image',
+      children: []
     }
   ]
 }

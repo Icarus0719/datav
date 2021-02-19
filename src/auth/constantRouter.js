@@ -38,6 +38,18 @@ export const constantRouterMap = [{
         name: 'ShaderDiamond',
         meta: {},
         component: () => import('@/views/ShaderDiamond')
+      },
+      {
+        path: '/Other',
+        name: 'Other',
+        meta: {},
+        component: () => import('@/views/Other')
+      },
+      {
+        path: '/Image',
+        name: 'Image',
+        meta: {},
+        component: () => import('@/views/Image')
       }
     ]
   },

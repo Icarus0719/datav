@@ -17,7 +17,6 @@
       <div class="sg-layer-row-5"></div>
       <div class="sg-layer-row-5"></div>
     </div>
-   
   </div>
 </template>
 <script>
