@@ -50,6 +50,12 @@ export const constantRouterMap = [{
         name: 'Image',
         meta: {},
         component: () => import('@/views/Image')
+      },
+      {
+        path: '/SVG',
+        name: 'SVG',
+        meta: {},
+        component: () => import('@/views/SVG')
       }
     ]
   },

@@ -7,7 +7,7 @@
     </div>
     <div class="sg-layer-box">
       <div
-        class="sg-layer-row-5 box-card"
+        class="sg-layer-row-5 image-card"
         v-for="(item, index) in boxData"
         :key="index"
       >
@@ -42,7 +42,7 @@ export default {
 }
 </script>
 <style lang="less">
-.box-card {
+.image-card {
   height: 150px;
   background: #fff;
   margin-bottom: 20px;

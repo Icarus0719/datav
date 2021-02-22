@@ -40,6 +40,11 @@ function AdminPath() {
       title: 'Image',
       path: '/Image',
       children: []
+    },
+    {
+      title: 'SVG',
+      path: '/SVG',
+      children: []
     }
   ]
 }
