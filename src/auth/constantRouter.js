@@ -56,6 +56,12 @@ export const constantRouterMap = [{
         name: 'SVG',
         meta: {},
         component: () => import('@/views/SVG')
+      },
+      {
+        path: '/WebUploader',
+        name: 'WebUploader',
+        meta: {},
+        component: () => import('@/views/WebUploader')
       }
     ]
   },

@@ -20,7 +20,7 @@
     </div>
 
     <div class="sg-container is-vertical">
-      <router-view class="content-main" />
+      <router-view class="content-main page-content" />
     </div>
   </div>
 </template>

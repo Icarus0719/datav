@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div>
     <div class="sg-box-mb10">
       <a href="https://juejin.cn/post/6844903682010513415" target="_blank"
         >利用CSS改变图片颜色</a

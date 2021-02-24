@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div>
     svg概念
   </div>
 </template>

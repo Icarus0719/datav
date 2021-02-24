@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div>
     <h3>其他技术</h3>
     <div class="content-part">
       <TextAlign></TextAlign>

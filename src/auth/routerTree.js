@@ -45,6 +45,11 @@ function AdminPath() {
       title: 'SVG',
       path: '/SVG',
       children: []
+    },
+    {
+      title: '断点上传',
+      path: '/WebUploader',
+      children: []
     }
   ]
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div>
     <div class="sg-layer-box">
       <div
         :class="['sg-layer-row-5', 'box-card', `${item.text}`]"

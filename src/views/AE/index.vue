@@ -1,5 +1,5 @@
 <template >
-  <div class="page-content">
+  <div>
     <p>
       AE动画：一些复杂动画完全由设计师使用AE软件制作，
       开发只需要如同引入静态资源就可以实现，大大降低了开发成本。
