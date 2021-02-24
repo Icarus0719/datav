@@ -62,6 +62,12 @@ export const constantRouterMap = [{
         name: 'WebUploader',
         meta: {},
         component: () => import('@/views/WebUploader')
+      },
+      {
+        path: '/Video',
+        name: 'Video',
+        meta: {},
+        component: () => import('@/views/Video')
       }
     ]
   },

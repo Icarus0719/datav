@@ -50,6 +50,11 @@ function AdminPath() {
       title: '断点上传',
       path: '/WebUploader',
       children: []
+    },
+    {
+      title: 'Video',
+      path: '/Video',
+      children: []
     }
   ]
 }
