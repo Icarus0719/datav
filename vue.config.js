@@ -57,6 +57,14 @@ module.exports = {
         changeOrigin: true,
         secure: false,
       },
+      '/new-bucket-fd47fd81': {
+        target: 'http://172.16.1.75:7480/new-bucket-fd47fd81',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/new-bucket-fd47fd81': '/'
+        }
+      },
     },
   }
 }
