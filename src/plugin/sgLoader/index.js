@@ -5,7 +5,7 @@ class sgUploader {
     this.domName = domName
     this.chunkSize = chunkSize
   }
-  create() {
+  create(fileNo) {
     return WebUploader.create({
       pick: {
         id: this.domName,
@@ -13,13 +13,14 @@ class sgUploader {
       formData: {
         uid: 0,
         md5: '',
-        chunkSize: this.chunkSize
+        chunkSize: this.chunkSize,
+        fileNo: fileNo
       },
       swf: "./Uploader.swf",
       chunked: true,
       chunkSize: this.chunkSize,
       threads: 1,
-      server: "file/uploadFile",
+      server: "webupload/file/uploadFile",
       auto: false,
       // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
       disableGlobalDnd: true,

@@ -13,40 +13,86 @@
 
     <div class="result"></div>
 
-    <div class="progress">
-      <div id="progress" class="progress-bar">0%</div>
-    </div>
+    <ul>
+      <li class="progress">
+        <div id="progress_md5" class="progress-bar">0%</div>
+      </li>
+      <li class="progress">
+        <div id="progress_res" class="progress-bar">0%</div>
+      </li>
+    </ul>
   </div>
 </template>
 <script>
 var WebUploader = window.WebUploader
 import sgLoader from "@/plugin/sgLoader";
+// import * as API from "@/api/api.webuploader.js"
 export default {
+  data () {
+    return {
+      fileNo: Math.floor(Math.random() * 100 + 1000)
+    }
+  },
   mounted () {
     // HOOK 这个必须要再uploader实例化前面
     WebUploader.Uploader.register({
       'before-send-file': 'beforeSendFile',
       'before-send': 'beforeSend'
     }, {
-      beforeSendFile: async (file) => {
-        const md5Val = await uploader.md5File(file).progress(percentage => {
-          this.getProgressBar(percentage)
-        })
-        console.log(md5Val)
-        file.md5 = md5Val;
-        file.uid = WebUploader.Base.guid();
-        // 上传服务器
-      },
-      beforeSend (block) {
-        var file = block.file;
-        var missChunks = file.missChunks;
-        var blockChunk = block.chunk;
-        console.log("当前分块：" + blockChunk);
-        console.log("missChunks:" + missChunks);
-      }
+      // beforeSendFile: async (file) => {
+      //   const md5Val = await uploader.md5File(file).progress(percentage => {
+      //     this.getProgressBar('progress_md5', percentage)
+      //   })
+      //   console.log(md5Val)
+      //   file.fileNo = this.fileNo;
+      //   file.md5 = md5Val;
+      //   file.uid = WebUploader.Base.guid();
+      //   // MD5判断
+      //   const response = await API.checkMD5({
+      //     uid: file.uid,
+      //     md5: file.md5,
+      //     fileName: file.name,
+      //     fileNo: file.fileNo
+      //   })
+      //   var resultCode = response.resultCode;
+      //   if (resultCode == 13008) {
+      //     // 文件不存在，那就正常流程
+      //   } else if (resultCode == 200) {
+      //     // 忽略上传过程，直接标识上传成功；
+      //     uploader.skipFile(file);
+      //     file.pass = true;
+      //   } else if (resultCode == 13009) {
+      //     // 部分已经上传到服务器了，但是差几个模块。
+      //     file.missChunks = resultCode.data;
+      //   }
+      // },
+      // beforeSend: async (block) => {
+      //   var file = await block.file;
+      //   var missChunks = file.missChunks;
+      //   var blockChunk = block.chunk;
+      //   console.log("当前分块：" + blockChunk);
+      //   console.log("missChunks:" + missChunks);
+      //   if (missChunks !== null && missChunks !== undefined && missChunks !== '') {
+      //     var flag = true;
+      //     for (var i = 0; i < missChunks.length; i++) {
+      //       if (blockChunk == missChunks[i]) {
+      //         console.log(file.name + ":" + blockChunk + ":还没上传，现在上传去吧。");
+      //         flag = false;
+      //         break;
+      //       }
+      //     }
+      //     if (flag) {
+      //       return false;
+      //     } else {
+      //       return true;
+      //     }
+      //   } else {
+      //     return true;
+      //   }
+      // }
     })
     // 实例化
-    var uploader = new sgLoader("#picker").create()
+    var uploader = new sgLoader("#picker").create(this.fileNo)
     this.uploader = uploader
     this.addListenerOnUpload()
   },
@@ -65,7 +111,7 @@ export default {
       })
       // 上传中
       this.uploader.on("uploadProgress", (file, percentage) => {
-        this.getProgressBar(percentage)
+        this.getProgressBar('progress_res', percentage)
       })
       //上传返回结果
       this.uploader.on("uploadSuccess", (file) => {
@@ -88,10 +134,11 @@ export default {
     uploadOpt () {
       this.uploader.upload();
     },
-    getProgressBar (percentage) {
-      var progressDom = document.getElementById("progress")
+    getProgressBar (titleId, percentage) {
+      var progressDom = document.getElementById(titleId)
+      let text = titleId === 'progress_md5' ? 'MD5:' : '上传中：'
       var progressPercentage = (percentage * 100).toFixed(2) + '%';
-      progressDom.innerText = progressPercentage
+      progressDom.innerText = text + progressPercentage
       progressDom.style.width = progressPercentage
     }
   },
@@ -119,6 +166,7 @@ export default {
   width: 400px;
   height: 20px;
   border: 1px solid green;
+  margin: 20px 0;
   .progress-bar {
     width: 0%;
     height: 100%;

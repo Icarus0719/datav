@@ -3,10 +3,10 @@ export const constantRouterMap = [{
     path: '/index',
     name: 'index',
     meta: {},
-    redirect: '/TextBufferGeometry',
+    redirect: '/webgldemo',
     component: () => import('@/views/Index.vue'),
     children: [{
-        path: '/TextBufferGeometry',
+        path: '/webgldemo',
         name: 'TextBufferGeometry',
         meta: {},
         component: () => import('@/views/TextBufferGeometry')

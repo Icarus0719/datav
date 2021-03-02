@@ -12,7 +12,8 @@ export const TextBufferGeometry_guis = (data, callback) => {
   ]
   const weights = ['regular', 'bold']
 
-  const folder = gui.addFolder('THREE.TextBufferGeometry')
+  const folder = gui.addFolder('属性')
+  folder.closed = false
   folder.add(data, 'text').onChange((value) => callback(value, 'text'))
   folder.add(data, 'size', 1, 30).onChange((value) => callback(value, 'size'))
   folder.add(data, 'height', 1, 20).onChange((value) => callback(value, 'height'))

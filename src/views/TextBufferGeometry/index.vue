@@ -34,6 +34,7 @@ export default {
         this.scene.add(e)
       })
       Default_helpers.forEach(i => {
+        i.visible = false
         this.scene.add(i)
       })
       const orbitControls = Default_orbitControls(camera, webglRender)

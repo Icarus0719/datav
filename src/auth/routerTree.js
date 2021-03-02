@@ -3,7 +3,7 @@
 function AdminPath() {
   this.data = [{
       title: 'TextBufferGeometry',
-      path: '/TextBufferGeometry',
+      path: '/webgldemo',
       children: []
     },
     {

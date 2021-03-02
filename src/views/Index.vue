@@ -61,7 +61,7 @@ export default {
 </script>
 <style lang="less">
 .content-box {
-  height: 100%;
+  min-height: 100%;
 }
 .content-main {
   height: auto;
