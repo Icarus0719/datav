@@ -26,7 +26,7 @@
 <script>
 var WebUploader = window.WebUploader
 import sgLoader from "@/plugin/sgLoader";
-// import * as API from "@/api/api.webuploader.js"
+import * as API from "@/api/api.webuploader.js"
 export default {
   data () {
     return {
@@ -39,57 +39,63 @@ export default {
       'before-send-file': 'beforeSendFile',
       'before-send': 'beforeSend'
     }, {
-      // beforeSendFile: async (file) => {
-      //   const md5Val = await uploader.md5File(file).progress(percentage => {
-      //     this.getProgressBar('progress_md5', percentage)
-      //   })
-      //   console.log(md5Val)
-      //   file.fileNo = this.fileNo;
-      //   file.md5 = md5Val;
-      //   file.uid = WebUploader.Base.guid();
-      //   // MD5判断
-      //   const response = await API.checkMD5({
-      //     uid: file.uid,
-      //     md5: file.md5,
-      //     fileName: file.name,
-      //     fileNo: file.fileNo
-      //   })
-      //   var resultCode = response.resultCode;
-      //   if (resultCode == 13008) {
-      //     // 文件不存在，那就正常流程
-      //   } else if (resultCode == 200) {
-      //     // 忽略上传过程，直接标识上传成功；
-      //     uploader.skipFile(file);
-      //     file.pass = true;
-      //   } else if (resultCode == 13009) {
-      //     // 部分已经上传到服务器了，但是差几个模块。
-      //     file.missChunks = resultCode.data;
-      //   }
-      // },
-      // beforeSend: async (block) => {
-      //   var file = await block.file;
-      //   var missChunks = file.missChunks;
-      //   var blockChunk = block.chunk;
-      //   console.log("当前分块：" + blockChunk);
-      //   console.log("missChunks:" + missChunks);
-      //   if (missChunks !== null && missChunks !== undefined && missChunks !== '') {
-      //     var flag = true;
-      //     for (var i = 0; i < missChunks.length; i++) {
-      //       if (blockChunk == missChunks[i]) {
-      //         console.log(file.name + ":" + blockChunk + ":还没上传，现在上传去吧。");
-      //         flag = false;
-      //         break;
-      //       }
-      //     }
-      //     if (flag) {
-      //       return false;
-      //     } else {
-      //       return true;
-      //     }
-      //   } else {
-      //     return true;
-      //   }
-      // }
+      beforeSendFile: (file) => {
+        var deferred = WebUploader.Deferred();
+        uploader.md5File(file).progress(percentage => {
+          this.getProgressBar('progress_md5', percentage)
+        }).then(async md5Val => {
+          console.log(md5Val)
+          file.fileNo = this.fileNo;
+          file.md5 = md5Val;
+          file.uid = WebUploader.Base.guid();
+          // MD5判断
+          const response = await API.checkMD5({
+            uid: file.uid,
+            md5: file.md5,
+            fileName: file.name,
+            fileNo: file.fileNo
+          })
+          var resultCode = response.resultCode;
+          if (resultCode == 13008) {
+            // 文件不存在，那就正常流程
+          } else if (resultCode == 200) {
+            // 忽略上传过程，直接标识上传成功；
+            uploader.skipFile(file);
+            file.pass = true;
+          } else if (resultCode == 13009) {
+            // 部分已经上传到服务器了，但是差几个模块。
+            file.missChunks = resultCode.data;
+          }
+          deferred.resolve();
+        })
+        return deferred.promise();
+      },
+      beforeSend: (block) => {
+        var deferred = WebUploader.Deferred();
+        var file = block.file;
+        var missChunks = file.missChunks;
+        var blockChunk = block.chunk;
+        console.log("当前分块：" + blockChunk);
+        console.log("missChunks:" + missChunks);
+        if (missChunks !== null && missChunks !== undefined && missChunks !== '') {
+          var flag = true;
+          for (var i = 0; i < missChunks.length; i++) {
+            if (blockChunk == missChunks[i]) {
+              console.log(file.name + ":" + blockChunk + ":还没上传，现在上传去吧。");
+              flag = false;
+              break;
+            }
+          }
+          if (flag) {
+            deferred.reject();
+          } else {
+            deferred.resolve();
+          }
+        } else {
+          deferred.resolve();
+        }
+        return deferred.promise();
+      }
     })
     // 实例化
     var uploader = new sgLoader("#picker").create(this.fileNo)

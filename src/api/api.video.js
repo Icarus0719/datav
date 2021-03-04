@@ -6,11 +6,11 @@ import baseUrl from './baseUrl'
 const preUrl = baseUrl.url + '/ip37/file'
 
 /**
- * @method checkMD5 校验MD5
+ * @method getVideoKey 获取视频加密的key
  */
-export const checkMD5 = data => {
+export const getVideoKey = data => {
   const httpConfig = {
-    url: `${preUrl}/checkFileMD5`,
+    url: `${preUrl}/getHlsFileUrl`,
     config: {
       loading: false,
       params: data

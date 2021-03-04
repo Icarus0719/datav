@@ -57,12 +57,12 @@ module.exports = {
         changeOrigin: true,
         secure: false,
       },
-      '/webupload': {
+      '/ip37': {
         target: 'http://172.16.3.7:10030/',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/webupload': '/'
+          '^/ip37': '/'
         }
       },
       '/new-bucket-fd47fd81': {

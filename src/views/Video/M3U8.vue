@@ -11,16 +11,20 @@
 <script>
 import videojs from 'video.js'
 import 'video.js/dist/video-js.min.css'
+import * as API from "@/api/api.video.js"
+import Hls from "hls.js"
 export default {
   data () {
     return {
     }
   },
   mounted () {
-    this.init()
+    // this.init()
+    this.initHls()
   },
   methods: {
-    init () {
+    async init () {
+      await this.getVideoKeys()
       this.myVideo = videojs("myVideo", {
         bigPlayButton: true,
         textTrackDisplay: false,
@@ -31,12 +35,40 @@ export default {
         }
       });
       this.myVideo.src({
+        src: this.m3u8Key,
         // src: "http://172.16.3.7:7481/new-bucket-fd47fd81/8b5fb021a1c949b1b011a74397264916_5629_1614322083881/8b5fb021a1c949b1b011a74397264916_5629_1614322083881.m3u8",
-        src: "http://172.16.3.7:7481/new-bucket-fd47fd81/8b5fb021a1c949b1b011a74397264916_9846_1614326027324/8b5fb021a1c949b1b011a74397264916_9846_1614326027324.m3u8",
+        // src: "http://172.16.3.7:7481/new-bucket-fd47fd81/8b5fb021a1c949b1b011a74397264916_9846_1614326027324/8b5fb021a1c949b1b011a74397264916_9846_1614326027324.m3u8",
         type: "application/x-mpegURL"
       })
-      this.myVideo.play()
+      console.log(this.myVideo)
+      // this.myVideo.play()
+    },
+    async getVideoKeys () {
+      const response = await API.getVideoKey({
+        fileName: "地球脉动2-01.mkv",
+        fileNo: "5629",
+        flag: "m3u8",
+      })
+      if (response.resultCode === 200) {
+        this.m3u8Key = response.data
+      }
+    },
+    async initHls () {
+      await this.getVideoKeys()
+      var video = document.getElementById('myVideo');
+      var videoSrc = this.m3u8Key
+      if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+      }
     }
   },
 }
 </script>
+<style lang="less">
+.video-js {
+  width: 800px;
+  height: 400px;
+}
+</style>

@@ -20,7 +20,7 @@ class sgUploader {
       chunked: true,
       chunkSize: this.chunkSize,
       threads: 1,
-      server: "webupload/file/uploadFile",
+      server: "ip37/file/uploadFile",
       auto: false,
       // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
       disableGlobalDnd: true,
