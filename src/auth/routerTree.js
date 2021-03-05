@@ -55,6 +55,11 @@ function AdminPath() {
       title: 'Video',
       path: '/Video',
       children: []
+    },
+    {
+      title: 'Rollup入门',
+      path: '/Rollup',
+      children: []
     }
   ]
 }
