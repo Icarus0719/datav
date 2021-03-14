@@ -55,6 +55,11 @@ function AdminPath() {
       title: 'Video',
       path: '/Video',
       children: []
+    },
+    {
+      title: 'Text动画',
+      path: '/TextAnimation',
+      children: []
     }
   ]
 }
