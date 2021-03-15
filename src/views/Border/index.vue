@@ -40,24 +40,6 @@ export default {
 }
 </script>
 <style lang="less">
-.box-card {
-  height: 150px;
-  background: #fff;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  &:hover {
-    a {
-      color: #03a9f3;
-      &::after {
-        content: '链接';
-      }
-    }
-  }
-}
-
 .border-type-0 {
   @borderColor: #03a9f3;
   position: relative;

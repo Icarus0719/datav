@@ -70,10 +70,10 @@ export const constantRouterMap = [{
         component: () => import('@/views/Video')
       },
       {
-        path: '/Rollup',
-        name: 'Rollup',
+        path: '/TextAnimation',
+        name: 'TextAnimation',
         meta: {},
-        component: () => import('@/views/Rollup')
+        component: () => import('@/views/TextAnimation')
       }
     ]
   },

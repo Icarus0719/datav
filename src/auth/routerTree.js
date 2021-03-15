@@ -57,8 +57,8 @@ function AdminPath() {
       children: []
     },
     {
-      title: 'Rollup入门',
-      path: '/Rollup',
+      title: 'Text动画',
+      path: '/TextAnimation',
       children: []
     }
   ]
