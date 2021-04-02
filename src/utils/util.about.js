@@ -163,3 +163,24 @@ export const getAllCheckedNodesByTraversDown = (treeData, f) => {
   }
   return traverse(treeData, f);
 }
+/**
+ * @method deepClone 复杂对象深拷贝
+ * @param obj 
+ */
+export const deepClone = (obj) => {
+  function copy(obj) {
+    if (obj === null) return null
+    if (typeof obj !== 'object') return obj;
+    if (obj.constructor === Date) return new Date(obj);
+    if (obj.constructor === RegExp) return new RegExp(obj);
+    var newObj = new obj.constructor(); //保持继承链
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) { //不遍历其原型链上的属性
+        var val = obj[key];
+        newObj[key] = typeof val === 'object' ? copy(val) : val; 
+      }
+    }
+    return newObj;
+  }
+  return copy(obj)
+}
