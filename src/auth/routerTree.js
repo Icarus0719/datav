@@ -1,68 +1,69 @@
 // 侧边栏，面包屑等路由内容的树形数据结构
 
 function AdminPath() {
-  this.data = [{
+  this.data = [
+    {
       title: 'TextBufferGeometry',
       path: '/webgldemo',
-      children: []
+      children: [],
     },
     {
       title: 'MeshPhysicalMaterial-Diamond',
       path: '/Diamond',
-      children: []
+      children: [],
     },
     {
       title: 'Border动画',
       path: '/Border',
-      children: []
+      children: [],
     },
     {
       title: 'Snap响指效果',
       path: '/Snap',
-      children: []
+      children: [],
     },
     {
       title: 'AE动画',
       path: '/AE',
-      children: []
+      children: [],
     },
     {
       title: 'ShaderDiamond',
       path: '/ShaderDiamond',
-      children: []
+      children: [],
     },
     {
       title: 'Other',
       path: '/Other',
-      children: []
+      children: [],
     },
     {
       title: 'Image',
       path: '/Image',
-      children: []
+      children: [],
     },
     {
       title: 'SVG',
       path: '/SVG',
-      children: []
+      children: [],
     },
     {
       title: '断点上传',
       path: '/WebUploader',
-      children: []
+      children: [],
     },
     {
       title: 'Video',
       path: '/Video',
-      children: []
+      children: [],
     },
     {
       title: 'Text动画',
       path: '/TextAnimation',
-      children: []
-    }
-  ]
+      children: [],
+    },
+  ];
 }
 export const superAdminPathList = new AdminPath().data.sort((a, b) => {
-  return a.title.localeCompare(b.title, 'zh-CN')
-})
+  return a.title.localeCompare(b.title, 'zh-CN');
+});
