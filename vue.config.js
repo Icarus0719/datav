@@ -58,7 +58,7 @@ module.exports = {
         secure: false,
       },
       '/ip37': {
-        target: 'http://172.16.3.7:10030/',
+        target: 'http://172.16.3.5:10030/',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
