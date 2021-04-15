@@ -66,6 +66,11 @@ export const constantRouterMap = [
             meta: {},
             component: () => import('@/views/SVG/svg-use.vue'),
           },
+          {
+            path: 'force',
+            meta: {},
+            component: () => import('@/views/SVG/svg-force-guidance.vue'),
+          },
         ],
       },
       {

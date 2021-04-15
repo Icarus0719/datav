@@ -6,7 +6,7 @@
         class="sg-layer-row-5 box-card"
         v-for="(item, index) in boxData"
         :key="index"
-        :class="tabTitle ? 'card-actived' : ''"
+        :class="$route.path.indexOf(item.path) > -1 ? 'card-actived' : ''"
         @click="clickOpt(item)"
       >
         <span>{{ item.text }}</span>
@@ -16,8 +16,8 @@
       <div class="sg-layer-row-5"></div>
     </div>
 
-    <div v-if="tabTitle">
-      <h4>{{ tabTitle }}</h4>
+    <div v-if="selectRow && $route.path.indexOf(selectRow.path) > -1">
+      <h4>{{ selectRow.text }}</h4>
       <router-view class="svg-viewer" />
     </div>
   </div>
@@ -26,23 +26,28 @@
 export default {
   data() {
     return {
-      boxData: [],
-      tabTitle: '',
+      boxData: [
+        { text: '案例：use,clip,mask', path: '/use' },
+        { text: '案例：力导向图', path: '/force' },
+      ],
+      selectRow: null,
     };
   },
   watch: {
     $route(newVal) {
       if (newVal.path === '/SVG') {
-        this.tabTitle = '';
+        this.selectRow = this.boxData[0];
       }
     },
   },
   mounted() {
-    this.boxData = [{ text: '案例：use,clip,mask', path: '/use' }];
+    this.selectRow = this.boxData.find((e) => {
+      return this.$route.path.indexOf(e.path) > -1;
+    });
   },
   methods: {
     clickOpt(item) {
-      this.tabTitle = item.text;
+      this.selectRow = item;
       this.$router.push('/SVG' + item.path);
     },
   },
