@@ -103,7 +103,14 @@ class Force {
       this.points.forEach((pb) => {
         if (pa === pb) return;
         let sb = pb.s;
-        linkPath = linkPath.concat(['M', sa.x, sa.y, 'L', sb.x, sb.y]);
+        linkPath = linkPath.concat([
+          'M',
+          Math.round(sa.x),
+          Math.round(sa.y),
+          'L',
+          Math.round(sb.x),
+          Math.round(sb.y),
+        ]);
       });
     });
     this.path.setAttribute('d', linkPath.join(' '));

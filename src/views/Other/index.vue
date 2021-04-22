@@ -8,12 +8,11 @@
   </div>
 </template>
 <script>
-import TextAlign from "./TextAlign"
-import TextLink from "./TextLink"
+import TextAlign from './TextAlign';
+import TextLink from './TextLink';
 export default {
-  components: { TextAlign, TextLink }
-
-}
+  components: { TextAlign, TextLink },
+};
 </script>
 <style lang="less">
 .content-part {
