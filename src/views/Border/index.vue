@@ -177,10 +177,6 @@ export default {
   &:hover::before {
     opacity: 1;
   }
-  > div {
-    position: absolute;
-    z-index: 10;
-  }
 }
 
 .border-type-5 {

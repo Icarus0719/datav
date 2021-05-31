@@ -62,6 +62,11 @@ function AdminPath() {
       path: '/TextAnimation',
       children: [],
     },
+    {
+      title: 'WebGL',
+      path: '/webgl',
+      children: [],
+    },
   ];
 }
 export const superAdminPathList = new AdminPath().data.sort((a, b) => {
