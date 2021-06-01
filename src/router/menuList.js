@@ -1,74 +1,73 @@
-// 侧边栏，面包屑等路由内容的树形数据结构
-
-function AdminPath() {
-  this.data = [
-    {
+// 侧边栏，面包屑等路由页面的树形数据结构
+function getMenuList() {
+  this.data = [{
       title: 'TextBufferGeometry',
-      path: '/webgldemo',
+      url: '/TextBufferGeometry',
       children: [],
     },
     {
       title: 'MeshPhysicalMaterial-Diamond',
-      path: '/Diamond',
+      url: '/Diamond',
       children: [],
     },
     {
       title: 'Border动画',
-      path: '/Border',
+      url: '/Border',
       children: [],
     },
     {
       title: 'Snap响指效果',
-      path: '/Snap',
+      url: '/Snap',
       children: [],
     },
     {
       title: 'AE动画',
-      path: '/AE',
+      url: '/AE',
       children: [],
     },
     {
       title: 'ShaderDiamond',
-      path: '/ShaderDiamond',
+      url: '/ShaderDiamond',
       children: [],
     },
     {
       title: 'Other',
-      path: '/Other',
+      url: '/Other',
       children: [],
     },
     {
       title: 'Image',
-      path: '/Image',
+      url: '/Image',
       children: [],
     },
     {
       title: 'SVG',
-      path: '/SVG',
+      url: '/SVG',
       children: [],
     },
     {
       title: '断点上传',
-      path: '/WebUploader',
+      url: '/WebUploader',
       children: [],
     },
     {
       title: 'Video',
-      path: '/Video',
+      url: '/Video',
       children: [],
     },
     {
       title: 'Text动画',
-      path: '/TextAnimation',
+      url: '/TextAnimation',
       children: [],
     },
     {
       title: 'WebGL',
-      path: '/webgl',
+      url: '/WebGL',
       children: [],
     },
   ];
+
 }
-export const superAdminPathList = new AdminPath().data.sort((a, b) => {
-  return a.title.localeCompare(b.title, 'zh-CN');
+export const menuList = new getMenuList().data.sort((a, b) => {
+  return a.title.localeCompare(b.title, 'zh-CN')
 });

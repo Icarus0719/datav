@@ -26,7 +26,7 @@
 </template>
 <script>
 import Tree from "@/libs/sg-tree.vue";
-import { superAdminPathList } from "@/auth/routerTree.js";
+import { menuList } from "@/router/menuList.js";
 
 export default {
   components: {
@@ -34,7 +34,7 @@ export default {
   },
   data () {
     return {
-      asideData: superAdminPathList,
+      asideData: menuList,
       filterText: ''
     }
   },
@@ -44,10 +44,10 @@ export default {
     }
   },
   mounted () {
-    this.asideData = superAdminPathList.map(e => {
+    this.asideData = menuList.map(e => {
       e.node = {
         label: e.title,
-        path: e.path
+        path: e.url
       }
       return e
     })
