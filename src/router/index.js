@@ -5,6 +5,7 @@ import {
 } from './constantRoutes.js';
 import {
   addAsyncRoutes,
+  hasCurrentRoute
 } from './helper.js';
 import UserInfo from '@/assets/js/userInfo.js';
 import {
@@ -31,6 +32,7 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: constantRoutes,
   isAddAsyncRoute: false, // 是否已经添加动态路由
+  isConstantRoute: false, // 是否是常态路由
 });
 
 const user = new UserInfo();
@@ -47,7 +49,7 @@ let asyncRoutes = [];
 router.beforeEach((to, from, next) => {
   if (!user.isLogin()) {
     if (router.options.isAddAsyncRoute) {
-      next();
+      hasCurrentRoute(to, asyncRoutes) ? next() : next(mainRoutes.redirect)
     } else {
       // 获取动态路由列表
       const permissionList = menuList;
@@ -55,10 +57,6 @@ router.beforeEach((to, from, next) => {
       mainRoutes.children = asyncRoutes;
       mainRoutes.redirect = asyncRoutes.length ? asyncRoutes[0].path : '';
       router.addRoute(mainRoutes);
-      router.addRoute({
-        path: "*",
-        redirect: mainRoutes.redirect
-      });
       router.options.isAddAsyncRoute = true;
       next({
         ...to,
@@ -66,7 +64,7 @@ router.beforeEach((to, from, next) => {
       });
     }
   } else {
-    next();
+    hasCurrentRoute(to, constantRoutes) ? next() : next('/login')
   }
 });
 

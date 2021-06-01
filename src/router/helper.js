@@ -37,3 +37,19 @@ export const addAsyncRoutes = (menuList, permissionList = []) => {
     return routes;
   }
 };
+
+export const hasCurrentRoute = (route, globalRoutes) => {
+  var temp = [];
+  for (var i = 0; i < globalRoutes.length; i++) {
+    if (route.path === globalRoutes[i].path) {
+      return true;
+    } else if (
+      globalRoutes[i].children &&
+      globalRoutes[i].children.length >= 1
+    ) {
+      temp = temp.concat(globalRoutes[i].children);
+    }
+  }
+  return temp.length >= 1 ? hasCurrentRoute(route, temp) : false;
+
+}
