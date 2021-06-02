@@ -46,13 +46,13 @@ function getMenuList() {
       title: 'SVG',
       url: '/SVG',
       children: [{
-          title: 'SVG-use',
+          title: '基础使用',
           url: '/SVG-use',
           children: [],
           isCheck: 1,
         },
         {
-          title: 'SVG-force-guidance',
+          title: '力导向图',
           url: '/SVG-force-guidance',
           children: [],
         }
@@ -75,8 +75,16 @@ function getMenuList() {
     },
     {
       title: 'WebGL',
-      url: '/WebGL',
-      children: [],
+      url: '/WebGL-guide',
+      children: [{
+        title: 'webgl编程指南',
+        url: '/WebGL-guide',
+        children: [{
+          title: 'chapter02',
+          url: '/WebGL-guide-chapter02',
+          children: [],
+        }, ],
+      }, ],
     },
     {
       title: '富文本编辑器',

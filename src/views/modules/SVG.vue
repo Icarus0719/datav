@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       boxData: [
-        { text: '案例：use,clip,mask', path: '/SVG-use' },
+        { text: '案例：基础使用', path: '/SVG-use' },
         { text: '案例：力导向图', path: '/SVG-force-guidance' }
       ],
       selectRow: null

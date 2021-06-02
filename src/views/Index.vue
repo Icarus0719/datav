@@ -40,7 +40,7 @@ export default {
   },
   watch: {
     filterText(newVal) {
-      this.$refs.tree.sfilter(newVal)
+      this.$refs.tree.filter(newVal)
     }
   },
   mounted() {},
