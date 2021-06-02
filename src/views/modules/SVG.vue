@@ -27,31 +27,31 @@ export default {
   data() {
     return {
       boxData: [
-        { text: '案例：use,clip,mask', path: '/use' },
-        { text: '案例：力导向图', path: '/force' },
+        { text: '案例：use,clip,mask', path: '/SVG-use' },
+        { text: '案例：力导向图', path: '/SVG-force-guidance' }
       ],
-      selectRow: null,
-    };
+      selectRow: null
+    }
   },
   watch: {
     $route(newVal) {
       if (newVal.path === '/SVG') {
-        this.selectRow = this.boxData[0];
+        this.selectRow = this.boxData[0]
       }
-    },
+    }
   },
   mounted() {
     this.selectRow = this.boxData.find((e) => {
-      return this.$route.path.indexOf(e.path) > -1;
-    });
+      return this.$route.path.indexOf(e.path) > -1
+    })
   },
   methods: {
     clickOpt(item) {
-      this.selectRow = item;
-      this.$router.push('/SVG' + item.path);
-    },
-  },
-};
+      this.selectRow = item
+      this.$router.push(item.path)
+    }
+  }
+}
 </script>
 <style lang="less">
 .svg-viewer {

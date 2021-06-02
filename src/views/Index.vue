@@ -11,9 +11,9 @@
       </el-input>
       <Tree
         ref="tree"
-        :model="asideData"
+        v-model="asideData"
         :current-node-key="$route.path"
-        node-key="path"
+        node-key="url"
         :props="{ children: 'children', label: 'title' }"
         @node-click="nodeClick"
       ></Tree>
@@ -25,38 +25,30 @@
   </div>
 </template>
 <script>
-import Tree from "@/libs/sg-tree.vue";
-import { menuList } from "@/router/menuList.js";
+import Tree from '@/element-ui-libs/sg-tree.vue'
+import { menuList } from '@/router/menuList.js'
 
 export default {
   components: {
-    Tree,
+    Tree
   },
-  data () {
+  data() {
     return {
       asideData: menuList,
       filterText: ''
     }
   },
   watch: {
-    filterText (newVal) {
-      this.$refs.tree.filter(newVal);
+    filterText(newVal) {
+      this.$refs.tree.sfilter(newVal)
     }
   },
-  mounted () {
-    this.asideData = menuList.map(e => {
-      e.node = {
-        label: e.title,
-        path: e.url
-      }
-      return e
-    })
-  },
+  mounted() {},
   methods: {
-    nodeClick (node) {
-      this.$router.push(node.path)
+    nodeClick(node) {
+      this.$router.push(node.url)
     }
-  },
+  }
 }
 </script>
 <style lang="less">

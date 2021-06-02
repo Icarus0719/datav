@@ -2,7 +2,7 @@
   <el-dialog
     :custom-class="customClass"
     :title="title"
-    :visible="visible"
+    :visible="value"
     :width="width"
     :show-close="showClose"
     :append-to-body="true"
@@ -11,17 +11,22 @@
   >
     <slot></slot>
     <span slot="footer" v-if="showFooter">
-      <el-button size="small" type="primary" @click="confirmDialog" v-oneClick>确定</el-button>
+      <el-button size="small" type="primary" @click="confirmDialog" v-oneClick
+        >确定</el-button
+      >
       <el-button size="small" @click="dialogCancle">取消</el-button>
     </span>
   </el-dialog>
 </template>
 <script>
 export default {
+  model: {
+    event: 'cancel',
+  },
   props: {
     customClass: String,
     title: String,
-    visible: {
+    value: {
       type: Boolean,
       default: false,
     },
@@ -35,21 +40,20 @@ export default {
     },
     width: {
       type: String,
-      default: "400px",
+      default: '400px',
     },
   },
-  data () {
+  data() {
     return {};
   },
   methods: {
-    confirmDialog () {
+    confirmDialog() {
       this.dialogCancle();
-      this.$emit("confirm");
+      this.$emit('confirm');
     },
-    dialogCancle () {
-      this.$emit("update:visible", false);
+    dialogCancle() {
+      this.$emit('cancel', false);
     },
   },
 };
 </script>
-

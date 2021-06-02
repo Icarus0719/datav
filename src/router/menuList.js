@@ -19,11 +19,13 @@ function getMenuList() {
       title: 'Snap响指效果',
       url: '/Snap',
       children: [],
+      isCheck: 1,
     },
     {
       title: 'AE动画',
       url: '/AE',
       children: [],
+      isCheck: 1,
     },
     {
       title: 'ShaderDiamond',
@@ -43,7 +45,18 @@ function getMenuList() {
     {
       title: 'SVG',
       url: '/SVG',
-      children: [],
+      children: [{
+          title: 'SVG-use',
+          url: '/SVG-use',
+          children: [],
+          isCheck: 1,
+        },
+        {
+          title: 'SVG-force-guidance',
+          url: '/SVG-force-guidance',
+          children: [],
+        }
+      ],
     },
     {
       title: '断点上传',
@@ -63,6 +76,11 @@ function getMenuList() {
     {
       title: 'WebGL',
       url: '/WebGL',
+      children: [],
+    },
+    {
+      title: '富文本编辑器',
+      url: '/Editor',
       children: [],
     },
   ];
