@@ -23,7 +23,7 @@ export default {
     initShader(gl) {
       const vertexShader = `
       void main(){
-        gl_Position = vec4(0.0, 0.0, 0.0, 1.0);
+        gl_Position = vec4(0.5, 0.5, 0.0, 1.0);
         gl_PointSize = 10.0;
       }
       `
@@ -35,7 +35,7 @@ export default {
       initShaders(gl, vertexShader, fragmentShader)
       gl.clearColor(0.0, 0.0, 0.0, 1.0)
       gl.clear(gl.COLOR_BUFFER_BIT)
-      gl.drawArrays(gl.POINTS, 0, 1)
+      gl.drawArrays(gl.POINTS, 0, 2)
     }
   }
 }
