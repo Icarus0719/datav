@@ -8,15 +8,15 @@ import Element from 'element-ui'
 import '@/assets/css/libs/index.less'
 import '@/assets/css/theme/index.less'
 import '@/assets/css/business/common.less'
-
+import Sungui from 'sung-ui'
 import '@/assets/js/directive.js'
-
 Vue.use(Element)
+Vue.use(Sungui)
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount('#app')

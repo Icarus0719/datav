@@ -10,6 +10,7 @@
       >
       </el-input>
       <Tree
+        class="sg-aside-tree"
         ref="tree"
         v-model="asideData"
         :current-node-key="$route.path"
@@ -56,14 +57,19 @@ export default {
   min-height: 100%;
 }
 .content-main {
-  height: auto;
-  min-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 .aside-menu {
   width: 360px;
   border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+}
+.sg-aside-tree {
+  flex: 1;
+  overflow-y: auto;
 }
 .aside-logo {
   height: 64px;

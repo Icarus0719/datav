@@ -1,6 +1,7 @@
 // 侧边栏，面包屑等路由页面的树形数据结构
 function getMenuList() {
-  this.data = [{
+  this.data = [
+    {
       title: 'TextBufferGeometry',
       url: '/TextBufferGeometry',
       children: [],
@@ -45,7 +46,8 @@ function getMenuList() {
     {
       title: 'SVG',
       url: '/SVG',
-      children: [{
+      children: [
+        {
           title: '基础使用',
           url: '/SVG-use',
           children: [],
@@ -55,7 +57,7 @@ function getMenuList() {
           title: '力导向图',
           url: '/SVG-force-guidance',
           children: [],
-        }
+        },
       ],
     },
     {
@@ -69,6 +71,17 @@ function getMenuList() {
       children: [],
     },
     {
+      title: 'Rollup开发组件库',
+      url: '/Rollup',
+      children: [
+        {
+          title: 'UI组件库',
+          url: '/Sungui',
+          children: [],
+        },
+      ],
+    },
+    {
       title: 'Text动画',
       url: '/TextAnimation',
       children: [],
@@ -76,24 +89,37 @@ function getMenuList() {
     {
       title: 'WebGL',
       url: '/WebGL-guide',
-      children: [{
-        title: 'webgl编程指南',
-        url: '/WebGL-guide',
-        children: [{
-          title: 'chapter02',
-          url: '/WebGL-guide-chapter02',
-          children: [],
-        }, ],
-      }, ],
+      children: [
+        {
+          title: 'webgl编程指南',
+          url: '',
+          children: [
+            {
+              title: 'chapter02',
+              url: '/WebGL-guide-chapter02',
+              children: [],
+            },
+            {
+              title: 'chapter03',
+              url: '/WebGL-guide-chapter03',
+              children: [],
+            },
+          ],
+        },
+      ],
     },
     {
       title: '富文本编辑器',
       url: '/Editor',
       children: [],
     },
-  ];
-
+    {
+      title: 'TypeScript',
+      url: '/TypeScript',
+      children: [],
+    },
+  ]
 }
 export const menuList = new getMenuList().data.sort((a, b) => {
   return a.title.localeCompare(b.title, 'zh-CN')
-});
+})

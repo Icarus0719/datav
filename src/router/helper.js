@@ -1,5 +1,5 @@
 export const _import = (file) => {
-  return () => import('@/views/' + file + '.vue');
+  return () => import('@/views/' + file);
 };
 
 /**
